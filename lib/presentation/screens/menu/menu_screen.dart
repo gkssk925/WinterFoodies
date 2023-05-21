@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
+import 'package:winter_foodies/constants/strings.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -11,18 +12,6 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final SearchController _searchController = SearchController();
-
-  List<String> _menuList = [
-    '붕어빵',
-    '어묵',
-    '군밤',
-    '호떡',
-    '계란빵',
-    '군고구마',
-    '다코야키',
-    '호두과자',
-    '국화빵'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +40,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   builder: (BuildContext context, SearchController controller) {
                     return Container(
                       decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
                           color: MyColors.white),
                       child: Row(
                         children: [
@@ -71,9 +60,9 @@ class _MenuScreenState extends State<MenuScreen> {
                   },
                   suggestionsBuilder:
                       (BuildContext context, SearchController controller) {
-                    return List<ListTile>.generate(_menuList.length,
+                    return List<ListTile>.generate(Strings.cateList.length,
                         (int index) {
-                      final String item = _menuList[index];
+                      final String item = Strings.cateList[index];
                       return ListTile(
                         title: Text(item),
                         onTap: () {
@@ -83,7 +72,142 @@ class _MenuScreenState extends State<MenuScreen> {
                         },
                       );
                     });
-                  })
+                  }),
+              Flexible(
+                child: GridView.count(
+                  crossAxisCount: 3, // 열의 개수
+                  children: List.generate(Strings.cateList.length, (index) {
+                    return Center(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed('/storeList');
+                        },
+                        child: Container(
+                          width: 80,
+                          height: 80,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: Center(child: Text(Strings.cateList[index])),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+              Column(
+                children: [
+                  Text(
+                    '인기 간식 랭킹',
+                    style: context.titleLarge(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '1    ',
+                        style: context.titleMedium(),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              color: MyColors.white),
+                          child: Center(
+                            child: Text(
+                              '붕어빵',
+                              style: context.titleMedium(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '2    ',
+                        style: context.titleMedium(),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              color: MyColors.white),
+                          child: Center(
+                            child: Text(
+                              '어묵',
+                              style: context.titleMedium(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '3    ',
+                        style: context.titleMedium(),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              color: MyColors.white),
+                          child: Center(
+                            child: Text(
+                              '계란빵',
+                              style: context.titleMedium(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '4    ',
+                        style: context.titleMedium(),
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              color: MyColors.white),
+                          child: Center(
+                            child: Text(
+                              '군밤',
+                              style: context.titleMedium(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )
             ],
           )),
     );

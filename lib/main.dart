@@ -3,6 +3,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:winter_foodies/presentation/screens/login/login_screen.dart';
 import 'package:winter_foodies/presentation/screens/menu/menu_screen.dart';
 import 'package:winter_foodies/presentation/screens/signup/sign_up_screen.dart';
+import 'package:winter_foodies/presentation/screens/store_detail/store_detail_screen.dart';
+import 'package:winter_foodies/presentation/screens/store_list/store_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,8 +24,8 @@ class MyApp extends StatelessWidget {
         '/': (BuildContext context) => const LoginScreen(),
         '/signup': (BuildContext context) => const SignUpScreen(),
         '/menu': (BuildContext context) => const MenuScreen(),
-        // '/appVersionDetail': (BuildContext context) =>
-        //     const AppVersionDetailScreen(),
+        '/storeList': (BuildContext context) => const StoreListScreen(),
+        '/storeDetail' :    (BuildContext context) => const StoreDetailScreen(),
         // '/login': (BuildContext context) => const LoginScreen(),
       },
     );
