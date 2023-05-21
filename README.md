@@ -15,4 +15,4 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-![피그마]([/WinterFoodiesFigma.pdf](https://github.com/gkssk925/WinterFoodies/files/11523449/WinterFoodiesFigma.pdf))
+![피그마](https://github.com/gkssk925/WinterFoodies/files/11523449/WinterFoodiesFigma.pdf)
