@@ -137,7 +137,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       SubmitButton(
                         onTapCallback: () {
                           setState(() {
-                            Navigator.of(context).pushNamed('/signup');
                             if (_formKey.currentState!.validate()) {
                               //로그인 수행
                             }
@@ -189,7 +188,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         children: [
                           Text('아직 계정이 없으세요?'),
-                          TextButton(onPressed: () {}, child: Text('회원가입'))
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/signup');
+                              },
+                              child: Text('회원가입'))
                         ],
                       )
                     ],

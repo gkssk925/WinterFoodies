@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:winter_foodies/presentation/screens/login/login_screen.dart';
-import 'package:winter_foodies/presentation/screens/menu/menu_screen.dart';
+import 'package:winter_foodies/presentation/screens/map/map_screen.dart';
+import 'package:winter_foodies/presentation/screens/home/home_screen.dart';
 import 'package:winter_foodies/presentation/screens/signup/sign_up_screen.dart';
 import 'package:winter_foodies/presentation/screens/store_detail/store_detail_screen.dart';
 import 'package:winter_foodies/presentation/screens/store_list/store_list_screen.dart';
@@ -23,10 +24,10 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => const LoginScreen(),
         '/signup': (BuildContext context) => const SignUpScreen(),
-        '/menu': (BuildContext context) => const MenuScreen(),
+        '/menu': (BuildContext context) => const HomeScreen(),
         '/storeList': (BuildContext context) => const StoreListScreen(),
-        '/storeDetail' :    (BuildContext context) => const StoreDetailScreen(),
-        // '/login': (BuildContext context) => const LoginScreen(),
+        '/storeDetail': (BuildContext context) => const StoreDetailScreen(),
+        '/map': (BuildContext context) => const MapScreen(),
       },
     );
   }

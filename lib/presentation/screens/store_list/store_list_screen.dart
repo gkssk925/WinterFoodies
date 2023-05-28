@@ -46,45 +46,60 @@ class _StoreListScreenState extends State<StoreListScreen>
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
           child: Column(
             children: [
-              SearchAnchor(
-                  searchController: _searchController,
-                  isFullScreen: false,
-                  builder: (BuildContext context, SearchController controller) {
-                    return Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(6)),
-                          color: MyColors.white),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.search),
-                            onPressed: () {
-                              controller.openView();
-                            },
-                          ),
-                          Text(
-                            _searchController.text,
-                            style: context.titleMedium(),
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                  suggestionsBuilder:
-                      (BuildContext context, SearchController controller) {
-                    return List<ListTile>.generate(Strings.storeList.length,
-                        (int index) {
-                      final String item = Strings.storeList[index];
-                      return ListTile(
-                        title: Text(item),
-                        onTap: () {
-                          setState(() {
-                            controller.closeView(item);
-                          });
-                        },
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                        Navigator.of(context).pushNamed('/map');
+                    },
+                    child: Icon(Icons.map)),
+
+                   Expanded(
+                     child: SearchAnchor(
+                                     searchController: _searchController,
+                                     isFullScreen: false,
+                                     viewHintText: '가게 검색',
+                                     builder: (BuildContext context, SearchController controller) {
+                      return Container(
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            color: MyColors.white),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.search),
+                              onPressed: () {
+                                controller.openView();
+                              },
+                            ),
+                            Text(
+                              _searchController.text,
+                              style: context.titleMedium(),
+                            )
+                          ],
+                        ),
                       );
-                    });
-                  }),
+                                     },
+                                     suggestionsBuilder:
+                        (BuildContext context, SearchController controller) {
+                      return List<ListTile>.generate(Strings.storeList.length,
+                          (int index) {
+                        final String item = Strings.storeList[index];
+                        return ListTile(
+                          title: Text(item),
+                          onTap: () {
+                            setState(() {
+                              controller.closeView(item);
+                            });
+                          },
+                        );
+                      });
+                                     }),
+                   ),
+
+                ],
+              ),
+             
 
               //메뉴 리스트
               SizedBox(
