@@ -29,4 +29,6 @@ class Strings {
     '떡볶이',
     '튀김',
   ];
+
+  static const List<String> myPageMenu = ['내 정보', '찜', '리뷰관리', '주문내역'];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:winter_foodies/presentation/screens/cart/cart_screen.dart';
 import 'package:winter_foodies/presentation/screens/menu/menu_screen.dart';
 import 'package:winter_foodies/presentation/screens/mypage/my_page_screen.dart';
 
@@ -53,11 +54,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> _buildScreens() {
-    return [MenuScreen(), MyPageScreen()];
+    return [CartScreen(), MenuScreen(), MyPageScreen()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.cart),
+        title: ("장바구니"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: ("홈"),
