@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
+import 'package:winter_foodies/presentation/screens/map/map_screen.dart';
+import 'package:winter_foodies/presentation/screens/store_detail/store_detail_screen.dart';
 
 class StoreListScreen extends StatefulWidget {
   const StoreListScreen({super.key});
@@ -49,57 +52,63 @@ class _StoreListScreenState extends State<StoreListScreen>
               Row(
                 children: [
                   InkWell(
-                    onTap: () {
-                        Navigator.of(context).pushNamed('/map');
-                    },
-                    child: Icon(Icons.map)),
-
-                   Expanded(
-                     child: SearchAnchor(
-                                     searchController: _searchController,
-                                     isFullScreen: false,
-                                     viewHintText: '가게 검색',
-                                     builder: (BuildContext context, SearchController controller) {
-                      return Container(
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            color: MyColors.white),
-                        child: Row(
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.search),
-                              onPressed: () {
-                                controller.openView();
-                              },
-                            ),
-                            Text(
-                              _searchController.text,
-                              style: context.titleMedium(),
-                            )
-                          ],
-                        ),
-                      );
-                                     },
-                                     suggestionsBuilder:
-                        (BuildContext context, SearchController controller) {
-                      return List<ListTile>.generate(Strings.storeList.length,
-                          (int index) {
-                        final String item = Strings.storeList[index];
-                        return ListTile(
-                          title: Text(item),
-                          onTap: () {
-                            setState(() {
-                              controller.closeView(item);
-                            });
-                          },
+                      onTap: () {
+                        //Navigator.of(context).pushNamed('/map');
+                        PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: MapScreen(),
+                          withNavBar: true,
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
                         );
-                      });
-                                     }),
-                   ),
-
+                      },
+                      child: Icon(Icons.map)),
+                  Expanded(
+                    child: SearchAnchor(
+                        searchController: _searchController,
+                        isFullScreen: false,
+                        viewHintText: '가게 검색',
+                        builder: (BuildContext context,
+                            SearchController controller) {
+                          return Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6)),
+                                color: MyColors.white),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.search),
+                                  onPressed: () {
+                                    controller.openView();
+                                  },
+                                ),
+                                Text(
+                                  _searchController.text,
+                                  style: context.titleMedium(),
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                        suggestionsBuilder: (BuildContext context,
+                            SearchController controller) {
+                          return List<ListTile>.generate(
+                              Strings.storeList.length, (int index) {
+                            final String item = Strings.storeList[index];
+                            return ListTile(
+                              title: Text(item),
+                              onTap: () {
+                                setState(() {
+                                  controller.closeView(item);
+                                });
+                              },
+                            );
+                          });
+                        }),
+                  ),
                 ],
               ),
-             
 
               //메뉴 리스트
               SizedBox(
@@ -226,11 +235,18 @@ class _StoreListScreenState extends State<StoreListScreen>
                       padding: const EdgeInsets.only(bottom: 10),
                       child: InkWell(
                         onTap: () {
-                           Navigator.of(context).pushNamed('/storeDetail');
+                          PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: const StoreDetailScreen(),
+                            withNavBar: true,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          );
                         },
                         child: Container(
                           decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(6)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
                               color: MyColors.white),
                           child: Center(
                             child: Text(

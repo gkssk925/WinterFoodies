@@ -205,7 +205,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         //회원가입 버튼
                         SubmitButton(onTapCallback: () {
                           setState(() {
-                           Navigator.of(context).pushNamed('/menu');
+                           Navigator.of(context).pushNamed('/home');
                             if (_formKey.currentState!.validate()) {
                               //회원가입 수행
                             }

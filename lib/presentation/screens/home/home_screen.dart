@@ -1,8 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:winter_foodies/config/my_colors.dart';
-import 'package:winter_foodies/constants/build_context_extensions.dart';
-import 'package:winter_foodies/constants/strings.dart';
-import 'package:winter_foodies/presentation/screens/category/category_screen.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:winter_foodies/presentation/screens/menu/menu_screen.dart';
 import 'package:winter_foodies/presentation/screens/mypage/my_page_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,206 +12,64 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final SearchController _searchController = SearchController();
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 1);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: MyColors.primary,
-        appBar: AppBar(
-          title: Text(
-            '메뉴선택',
-            style: context.displayMedium(),
-          ),
-          // leading: IconButton(
-          //     onPressed: () {
-          //       Navigator.of(context).pop();
-          //     },
-          //     icon: Icon(Icons.arrow_back_ios)),
-          backgroundColor: MyColors.primary,
-        ),
-        body: Container(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
-            child: Column(
-              children: [
-                SearchAnchor(
-                    searchController: _searchController,
-                    isFullScreen: false,
-                    viewHintText: '메뉴 검색',
-                    builder:
-                        (BuildContext context, SearchController controller) {
-                      return Container(
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            color: MyColors.white),
-                        child: Row(
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.search),
-                              onPressed: () {
-                                controller.openView();
-                              },
-                            ),
-                            Text(
-                              _searchController.text,
-                              style: context.titleMedium(),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                    suggestionsBuilder:
-                        (BuildContext context, SearchController controller) {
-                      return List<ListTile>.generate(Strings.cateList.length,
-                          (int index) {
-                        final String item = Strings.cateList[index];
-                        return ListTile(
-                          title: Text(item),
-                          onTap: () {
-                            setState(() {
-                              controller.closeView(item);
-                            });
-                          },
-                        );
-                      });
-                    }),
-                Flexible(
-                  child: GridView.count(
-                    crossAxisCount: 3, // 열의 개수
-                    children: List.generate(Strings.cateList.length, (index) {
-                      return Center(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/storeList');
-                          },
-                          child: Container(
-                            width: 80,
-                            height: 80,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            child: Center(child: Text(Strings.cateList[index])),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-                Column(
-                  children: [
-                    Text(
-                      '인기 간식 랭킹',
-                      style: context.titleLarge(),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          '1    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '붕어빵',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          '2    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '어묵',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          '3    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '계란빵',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          '4    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '군밤',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )
-              ],
-            )));
+    return PersistentTabView(
+      context,
+      controller: _controller,
+      screens: _buildScreens(),
+      items: _navBarsItems(),
+      confineInSafeArea: true,
+      backgroundColor: Colors.white, // Default is Colors.white.
+      handleAndroidBackButtonPress: true, // Default is true.
+      resizeToAvoidBottomInset:
+          true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+      stateManagement: true, // Default is true.
+      hideNavigationBarWhenKeyboardShows:
+          true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+      decoration: NavBarDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        colorBehindNavBar: Colors.white,
+      ),
+      popAllScreensOnTapOfSelectedTab: true,
+      popActionScreens: PopActionScreensType.all,
+      itemAnimationProperties: ItemAnimationProperties(
+        // Navigation Bar's items animation properties.
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
+      ),
+      screenTransitionAnimation: ScreenTransitionAnimation(
+        // Screen transition animation on change of selected tab.
+        animateTabTransition: true,
+        curve: Curves.ease,
+        duration: Duration(milliseconds: 200),
+      ),
+      navBarStyle:
+          NavBarStyle.style1, // Choose the nav bar style with this property.
+    );
+  }
+
+  List<Widget> _buildScreens() {
+    return [MenuScreen(), MyPageScreen()];
+  }
+
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.home),
+        title: ("홈"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.person),
+        title: ("마이"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+    ];
   }
 }
