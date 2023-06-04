@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
+import 'package:winter_foodies/presentation/screens/common/round_button.dart';
 import 'package:winter_foodies/presentation/screens/login/widgets/submit_button.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _storeNameController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
 
-    final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
           child: Form(
-              key: _formKey,
+            key: _formKey,
             child: Column(
               children: [
                 Text(
@@ -62,6 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         )),
                   ],
                 ),
+                //아이디
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -69,23 +71,73 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: context.titleMedium(),
                   ),
                 ),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _idController,
+                        decoration: const InputDecoration(
+                          hintText: '아이디 입력',
+                          fillColor: MyColors.white,
+                          filled: true,
+                        ),
+                        validator: (value) {
+                          if (value != null && value.isEmpty) {
+                            return '아이디를 입력해주세요!';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    RoundButton(buttonText: '중복확인', onTap: () {})
+                  ],
+                ),
                 const SizedBox(
-                  width: 10,
+                  height: 10,
                 ),
-                TextFormField(
-                  controller: _idController,
-                  decoration: const InputDecoration(
-                    hintText: '아이디 입력',
-                    fillColor: MyColors.white,
-                    filled: true,
+
+                //닉네임
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '닉네임',
+                    style: context.titleMedium(),
                   ),
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return '아이디를 입력해주세요!';
-                    }
-                    return null;
-                  },
                 ),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _idController,
+                        decoration: const InputDecoration(
+                          hintText: '닉네임 입력',
+                          fillColor: MyColors.white,
+                          filled: true,
+                        ),
+                        validator: (value) {
+                          if (value != null && value.isEmpty) {
+                            return '닉네임을 입력해주세요!';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    RoundButton(buttonText: '중복확인', onTap: () {})
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+
+                //비밀번호
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -93,9 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: context.titleMedium(),
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+
                 TextFormField(
                   controller: _pwdController,
                   decoration: const InputDecoration(
@@ -111,107 +161,82 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                 ),
                 const SizedBox(
-                  width: 10,
+                  height: 10,
                 ),
+
+                //비밀번호 확인
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '상호명',
+                    '비밀번호 확인',
                     style: context.titleMedium(),
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+
                 TextFormField(
-                  controller: _storeNameController,
+                  controller: _pwdController,
                   decoration: const InputDecoration(
-                    hintText: '상호명 입력',
+                    hintText: '비밀번호 확인',
                     fillColor: MyColors.white,
                     filled: true,
                   ),
                   validator: (value) {
                     if (value != null && value.isEmpty) {
-                      return '상호명을 입력해주세요!';
+                      return '비밀번호를 확인해주세요!';
                     }
                     return null;
                   },
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '위치',
-                    style: context.titleMedium(),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                TextFormField(
-                  controller: _locationController,
-                  decoration: const InputDecoration(
-                    hintText: '위치 입력',
-                    fillColor: MyColors.white,
-                    filled: true,
-                  ),
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return '위치를 입력해주세요!';
-                    }
-                    return null;
-                  },
-                ),
-          
+
                 const Divider(
-                          thickness: 1,
-                          color: MyColors.black,
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '소셜 로그인',
-                          style: context.titleMedium(),
-                        ),
-          
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              'assets/naver.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/kakao.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/google.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ],
-                        ),
-          
-                                         const SizedBox(
-                          height: 10,
-                        ),
-          
-                        //회원가입 버튼
-                        SubmitButton(onTapCallback: () {
-                          setState(() {
-                           Navigator.of(context).pushNamed('/home');
-                            if (_formKey.currentState!.validate()) {
-                              //회원가입 수행
-                            }
-                          });
-                        },
-                        btnText: '회원가입',),
+                  thickness: 1,
+                  color: MyColors.black,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  '소셜 로그인',
+                  style: context.titleMedium(),
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Image.asset(
+                      'assets/naver.png',
+                      width: 40,
+                      height: 40,
+                    ),
+                    Image.asset(
+                      'assets/kakao.png',
+                      width: 40,
+                      height: 40,
+                    ),
+                    Image.asset(
+                      'assets/google.png',
+                      width: 40,
+                      height: 40,
+                    ),
+                  ],
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                //회원가입 버튼
+                SubmitButton(
+                  onTapCallback: () {
+                    setState(() {
+                      Navigator.of(context).pushNamed('/home');
+                      if (_formKey.currentState!.validate()) {
+                        //회원가입 수행
+                      }
+                    });
+                  },
+                  btnText: '회원가입',
+                ),
               ],
             ),
           ),

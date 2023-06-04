@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
@@ -14,6 +16,30 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final SearchController _searchController = SearchController();
+
+  int currentIndex = 0;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    const duration = Duration(seconds: 2);
+    timer = Timer.periodic(duration, (Timer timer) {
+      setState(() {
+        currentIndex = (currentIndex + 4) % Strings.cateList.length;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +110,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       return Center(
                         child: InkWell(
                           onTap: () {
-                            // Navigator.of(context).pushNamed('/storeList');
                             PersistentNavBarNavigator.pushNewScreen(
                               context,
                               screen: StoreListScreen(),
@@ -116,110 +141,49 @@ class _MenuScreenState extends State<MenuScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          '1    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '붕어빵',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          '2    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '어묵',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          '3    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '계란빵',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          '4    ',
-                          style: context.titleMedium(),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(6)),
-                                color: MyColors.white),
-                            child: Center(
-                              child: Text(
-                                '군밤',
-                                style: context.titleMedium(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 120,
+                      child: ListView.builder(
+                          itemCount:
+                              (currentIndex + 4) <= Strings.cateList.length
+                                  ? 4
+                                  : Strings.cateList.length - currentIndex,
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: ((context, index) {
+                            final keywordIndex = (currentIndex + index) %
+                                Strings.cateList.length;
+                            return _popularKeyword(
+                                Strings.cateList[keywordIndex], keywordIndex);
+                          })),
                     )
                   ],
                 )
               ],
             )));
+  }
+
+  Widget _popularKeyword(String keyword, int index) {
+    return Row(
+      children: [
+        Text(
+          (index + 1).toString(),
+          style: context.titleMedium(),
+        ),
+        Flexible(
+          flex: 2,
+          child: Container(
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                color: MyColors.white),
+            child: Center(
+              child: Text(
+                keyword,
+                style: context.titleMedium(),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

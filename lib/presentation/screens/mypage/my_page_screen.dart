@@ -3,6 +3,8 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
+import 'package:winter_foodies/presentation/screens/mypage/widgets/my_info_screen.dart';
+import 'package:winter_foodies/presentation/screens/zzim/zzim_screen.dart';
 
 class MyPageScreen extends StatefulWidget {
   const MyPageScreen({super.key});
@@ -46,6 +48,23 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     return Center(
                       child: InkWell(
                         onTap: () {
+                          if (index == 0) {
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: MyInfoScreen(),
+                              withNavBar: true,
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            );
+                          } else if (index == 1) {
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: ZzimScreen(),
+                              withNavBar: true,
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            );
+                          }
                           // PersistentNavBarNavigator.pushNewScreen(
                           //   context,
                           //   screen: StoreListScreen(),
@@ -68,9 +87,48 @@ class _MyPageScreenState extends State<MyPageScreen> {
                   }),
                 ),
               ),
-              Text('환경설정'),
-              Text('공지사항'),
-              Text('현재 버전 1.0.1'),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: MyColors.white),
+                child: Row(
+                  children: [
+                    Expanded(child: Text('환경설정')),
+                    Icon(Icons.arrow_forward_ios)
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: MyColors.white),
+                child: Row(
+                  children: [
+                    Expanded(child: Text('공지사항')),
+                    Icon(Icons.arrow_forward_ios)
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: MyColors.white),
+                child: Row(
+                  children: [
+                    Expanded(child: Text('현재버전 1.0.1')),
+                    Icon(Icons.arrow_forward_ios)
+                  ],
+                ),
+              ),
             ],
           )),
     );
