@@ -36,7 +36,11 @@ class _MenuScreenState extends State<MenuScreen> {
     const duration = Duration(seconds: 2);
     timer = Timer.periodic(duration, (Timer timer) {
       setState(() {
-        currentIndex = (currentIndex + 4) % Strings.cateList.length;
+        if (currentIndex == 8) {
+          currentIndex = 0;
+        } else {
+          currentIndex = (currentIndex + 4) % Strings.cateList.length;
+        }
       });
     });
   }
@@ -142,7 +146,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       height: 20,
                     ),
                     SizedBox(
-                      height: 120,
+                      height: 150,
                       child: ListView.builder(
                           itemCount:
                               (currentIndex + 4) <= Strings.cateList.length
@@ -163,26 +167,36 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   Widget _popularKeyword(String keyword, int index) {
-    return Row(
+    return Column(
       children: [
-        Text(
-          (index + 1).toString(),
-          style: context.titleMedium(),
-        ),
-        Flexible(
-          flex: 2,
-          child: Container(
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-                color: MyColors.white),
-            child: Center(
-              child: Text(
-                keyword,
-                style: context.titleMedium(),
+        Row(
+          children: [
+            Text(
+              (index + 1).toString(),
+              style: context.titleMedium(),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Flexible(
+              flex: 2,
+              child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: MyColors.white),
+                child: Center(
+                  child: Text(
+                    keyword,
+                    style: context.titleMedium(),
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
+        const SizedBox(
+          height: 10,
+        )
       ],
     );
   }

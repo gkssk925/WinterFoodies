@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
-import 'package:winter_foodies/presentation/screens/common/round_button.dart';
+import 'package:winter_foodies/constants/enums.dart';
+import 'package:winter_foodies/presentation/screens/common/provider/user_provider.dart';
+import 'package:winter_foodies/presentation/screens/common/widgets/round_button.dart';
+import 'package:winter_foodies/presentation/screens/common/widgets/user_type_select_button.dart';
 import 'package:winter_foodies/presentation/screens/login/widgets/submit_button.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -19,8 +23,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
+  late UserProvider _userProvider;
+
   @override
   Widget build(BuildContext context) {
+    _userProvider = context.watch<UserProvider>();
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: MyColors.primary,
@@ -46,23 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   '회원가입',
                   style: context.titleLarge(),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          '구매자',
-                          style: context.titleMedium(),
-                        )),
-                    ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          '사장님',
-                          style: context.titleMedium(),
-                        )),
-                  ],
-                ),
+                const UserTypeSelectButton(),
                 //아이디
                 Align(
                   alignment: Alignment.centerLeft,
@@ -100,39 +92,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 10,
                 ),
 
-                //닉네임
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '닉네임',
-                    style: context.titleMedium(),
-                  ),
-                ),
+                UserType.CUSTOMER == _userProvider.userType
+                    ? Column(
+                        children: [
+                          //닉네임
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              '닉네임',
+                              style: context.titleMedium(),
+                            ),
+                          ),
 
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: _idController,
-                        decoration: const InputDecoration(
-                          hintText: '닉네임 입력',
-                          fillColor: MyColors.white,
-                          filled: true,
-                        ),
-                        validator: (value) {
-                          if (value != null && value.isEmpty) {
-                            return '닉네임을 입력해주세요!';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    RoundButton(buttonText: '중복확인', onTap: () {})
-                  ],
-                ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _idController,
+                                  decoration: const InputDecoration(
+                                    hintText: '닉네임 입력',
+                                    fillColor: MyColors.white,
+                                    filled: true,
+                                  ),
+                                  validator: (value) {
+                                    if (value != null && value.isEmpty) {
+                                      return '닉네임을 입력해주세요!';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              RoundButton(buttonText: '중복확인', onTap: () {})
+                            ],
+                          ),
+                        ],
+                      )
+                    : SizedBox(),
+
                 const SizedBox(
                   height: 10,
                 ),

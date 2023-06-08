@@ -61,7 +61,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen>
                               : MyColors.white),
                       child: Center(
                         child: Text(
-                          '메뉴',
+                          '\메뉴',
                           style: context.titleMedium(),
                         ),
                       ),

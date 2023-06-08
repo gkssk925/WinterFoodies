@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
-import 'package:winter_foodies/presentation/screens/common/round_button.dart';
+import 'package:winter_foodies/presentation/screens/common/widgets/round_button.dart';
 
 class MyInfoScreen extends StatefulWidget {
   const MyInfoScreen({super.key});

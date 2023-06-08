@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
+import 'package:winter_foodies/constants/enums.dart';
 import 'package:winter_foodies/core/utils/string_util.dart';
+import 'package:winter_foodies/presentation/screens/common/provider/user_provider.dart';
+import 'package:winter_foodies/presentation/screens/common/widgets/user_type_select_button.dart';
 import 'package:winter_foodies/presentation/screens/login/widgets/submit_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -58,23 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                              onPressed: () {},
-                              child: Text(
-                                '구매자',
-                                style: context.titleMedium(),
-                              )),
-                          ElevatedButton(
-                              onPressed: () {},
-                              child: Text(
-                                '사장님',
-                                style: context.titleMedium(),
-                              )),
-                        ],
-                      ),
+
+                      const UserTypeSelectButton(),
+
                       const SizedBox(
                         height: 10,
                       ),
