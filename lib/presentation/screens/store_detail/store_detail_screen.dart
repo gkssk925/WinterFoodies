@@ -3,6 +3,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
+import 'package:winter_foodies/presentation/screens/store_detail/widgets/store_detail_info.dart';
+import 'package:winter_foodies/presentation/screens/store_detail/widgets/store_detail_menu.dart';
+import 'package:winter_foodies/presentation/screens/store_detail/widgets/store_detail_review.dart';
 
 class StoreDetailScreen extends StatefulWidget {
   const StoreDetailScreen({super.key});
@@ -14,8 +17,6 @@ class StoreDetailScreen extends StatefulWidget {
 class _StoreDetailScreenState extends State<StoreDetailScreen>
     with TickerProviderStateMixin {
   late TabController _tabController = TabController(length: 3, vsync: this);
-  int _selectedFilterType = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,111 +55,38 @@ class _StoreDetailScreenState extends State<StoreDetailScreen>
                     color: Colors.amber,
                   ),
               onRatingUpdate: (rating) {}),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            decoration: BoxDecoration(
-                color: MyColors.white, borderRadius: BorderRadius.circular(6)),
+          DefaultTabController(
+            length: 3,
             child: TabBar(
-                controller: _tabController,
-                indicatorColor: Colors.transparent,
-                labelColor: Colors.transparent,
-                automaticIndicatorColorAdjustment: false,
-                dividerColor: Colors.transparent,
-                tabs: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedFilterType = 0;
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(6)),
-                          color: _selectedFilterType == 0
-                              ? MyColors.darkOrange
-                              : MyColors.white),
-                      child: Center(
-                        child: Text(
-                          '메뉴',
-                          style: context.titleMedium(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedFilterType = 1;
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(6)),
-                          color: _selectedFilterType == 1
-                              ? MyColors.darkOrange
-                              : MyColors.white),
-                      child: Center(
-                        child: Text(
-                          '가게정보',
-                          style: context.titleMedium(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedFilterType = 2;
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(6)),
-                          color: _selectedFilterType == 2
-                              ? MyColors.darkOrange
-                              : MyColors.white),
-                      child: Center(
-                        child: Text(
-                          '리뷰',
-                          style: context.titleMedium(),
-                        ),
-                      ),
-                    ),
-                  ),
-                ]),
+              controller: _tabController,
+              tabs: const [
+                Tab(
+                  text: '메뉴',
+                ),
+                Tab(
+                  text: '가게정보',
+                ),
+                Tab(
+                  text: '리뷰',
+                )
+              ],
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: Colors.white,
+              ),
+              indicatorSize: TabBarIndicatorSize.tab,
+            ),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: 20,
           ),
           Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: Strings.menuList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: InkWell(
-                    onTap: () {
-                      // Navigator.of(context).pushNamed('/storeDetail');
-                    },
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(6)),
-                          color: MyColors.white),
-                      child: Center(
-                        child: Text(
-                          Strings.menuList[index],
-                          style: context.titleMedium(),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          )
+              child: TabBarView(controller: _tabController, children: [
+            StoreDetailMenu(),
+            StoreDetailInfo(),
+            
+            StoreDetailReview(),
+          ]))
         ]),
       ),
     );
