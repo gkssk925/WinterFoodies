@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
@@ -26,15 +27,33 @@ class _StoreDetailScreenState extends State<StoreDetailScreen>
           style: context.displayMedium(),
         ),
         leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.favorite),
+            iconSize: 50,
             onPressed: () {
-              Navigator.of(context).pop();
+              // 하트 버튼을 눌렀을 때의 동작
             },
-            icon: Icon(Icons.arrow_back_ios)),
+          ),
+        ],
         backgroundColor: MyColors.primary,
       ),
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
         child: Column(children: [
+          RatingBar.builder(
+              initialRating: 3.0,
+              allowHalfRating: true,
+              itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+              onRatingUpdate: (rating) {}),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
             decoration: BoxDecoration(
@@ -61,7 +80,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen>
                               : MyColors.white),
                       child: Center(
                         child: Text(
-                          '\메뉴',
+                          '메뉴',
                           style: context.titleMedium(),
                         ),
                       ),
