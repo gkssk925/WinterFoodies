@@ -30,5 +30,11 @@ class Strings {
     '튀김',
   ];
 
+  static const  List<String> cartList = [
+    '어묵  2000원',
+    '붕어빵 2000원',
+    '튀김 2000원',
+  ];
+
   static const List<String> myPageMenu = ['내 정보', '찜', '리뷰관리', '주문내역'];
 }

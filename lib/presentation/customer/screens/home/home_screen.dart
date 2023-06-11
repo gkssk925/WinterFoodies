@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:winter_foodies/constants/cart_screen.dart';
-import 'package:winter_foodies/presentation/screens/menu/menu_screen.dart';
-import 'package:winter_foodies/presentation/screens/mypage/my_page_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/cart/cart_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/menu/menu_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/mypage/my_page_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

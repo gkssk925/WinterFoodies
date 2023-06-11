@@ -5,7 +5,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
-import 'package:winter_foodies/presentation/screens/store_list/store_list_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/store_list/store_list_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});

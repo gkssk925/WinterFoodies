@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/enums.dart';
-import 'package:winter_foodies/presentation/screens/common/provider/user_provider.dart';
+import 'package:winter_foodies/presentation/customer/screens/common/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class UserTypeSelectButton extends StatefulWidget {

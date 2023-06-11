@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/enums.dart';
-import 'package:winter_foodies/presentation/screens/common/provider/user_provider.dart';
-import 'package:winter_foodies/presentation/screens/common/widgets/round_button.dart';
-import 'package:winter_foodies/presentation/screens/common/widgets/user_type_select_button.dart';
-import 'package:winter_foodies/presentation/screens/login/widgets/submit_button.dart';
+import 'package:winter_foodies/presentation/customer/screens/common/provider/user_provider.dart';
+import 'package:winter_foodies/presentation/customer/screens/common/widgets/round_button.dart';
+import 'package:winter_foodies/presentation/customer/screens/common/widgets/user_type_select_button.dart';
+import 'package:winter_foodies/presentation/customer/screens/login/widgets/submit_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

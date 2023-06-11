@@ -3,9 +3,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
-import 'package:winter_foodies/presentation/screens/store_detail/widgets/store_detail_info.dart';
-import 'package:winter_foodies/presentation/screens/store_detail/widgets/store_detail_menu.dart';
-import 'package:winter_foodies/presentation/screens/store_detail/widgets/store_detail_review.dart';
+import 'package:winter_foodies/presentation/customer/screens/store_detail/widgets/store_detail_info.dart';
+import 'package:winter_foodies/presentation/customer/screens/store_detail/widgets/store_detail_menu.dart';
+import 'package:winter_foodies/presentation/customer/screens/store_detail/widgets/store_detail_review.dart';
 
 class StoreDetailScreen extends StatefulWidget {
   const StoreDetailScreen({super.key});

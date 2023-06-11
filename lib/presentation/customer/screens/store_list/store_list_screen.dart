@@ -3,8 +3,8 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
-import 'package:winter_foodies/presentation/screens/map/map_screen.dart';
-import 'package:winter_foodies/presentation/screens/store_detail/store_detail_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/map/map_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/store_detail/store_detail_screen.dart';
 
 class StoreListScreen extends StatefulWidget {
   const StoreListScreen({super.key});

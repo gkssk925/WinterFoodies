@@ -3,8 +3,9 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
-import 'package:winter_foodies/presentation/screens/mypage/widgets/my_info_screen.dart';
-import 'package:winter_foodies/presentation/screens/zzim/zzim_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/login/login_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/mypage/widgets/my_info_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/zzim/zzim_screen.dart';
 
 class MyPageScreen extends StatefulWidget {
   const MyPageScreen({super.key});
@@ -24,11 +25,6 @@ class _MyPageScreenState extends State<MyPageScreen> {
           '마이 페이지',
           style: context.displayMedium(),
         ),
-        // leading: IconButton(
-        //     onPressed: () {
-        //       Navigator.of(context).pop();
-        //     },
-        //     icon: Icon(Icons.arrow_back_ios)),
         backgroundColor: MyColors.primary,
       ),
       body: Container(
@@ -127,6 +123,31 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     Expanded(child: Text('현재버전 1.0.1')),
                     Icon(Icons.arrow_forward_ios)
                   ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  PersistentNavBarNavigator.pushNewScreen(
+                    context,
+                    screen: LoginScreen(),
+                    withNavBar: true,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      color: MyColors.white),
+                  child: Row(
+                    children: [
+                      Expanded(child: Text('로그아웃')),
+                      Icon(Icons.arrow_forward_ios)
+                    ],
+                  ),
                 ),
               ),
             ],
