@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
+import 'package:winter_foodies/constants/enums.dart';
 import 'package:winter_foodies/presentation/customer/screens/cart/cart_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/common/provider/user_provider.dart';
 import 'package:winter_foodies/presentation/customer/screens/menu/menu_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/mypage/my_page_screen.dart';
+import 'package:winter_foodies/presentation/manager/screens/manage_home/mange_home_screen.dart';
+import 'package:winter_foodies/presentation/manager/screens/manage_mypage/manage_my_page_screen.dart';
+import 'package:winter_foodies/presentation/manager/screens/manage_temp/mange_temp_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,6 +22,54 @@ class _HomeScreenState extends State<HomeScreen> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 1);
 
+  List<Widget> _customerScreens = [CartScreen(), MenuScreen(), MyPageScreen()];
+  List<Widget> _ManagerScreens = [
+    ManageTempScreen(),
+    ManageHomeScreen(),
+    ManageMyPageScreen()
+  ];
+
+  List<PersistentBottomNavBarItem> _customerBottomNavi = [
+    PersistentBottomNavBarItem(
+      icon: Icon(CupertinoIcons.cart),
+      title: ("장바구니"),
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(CupertinoIcons.home),
+      title: ("홈"),
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(CupertinoIcons.person),
+      title: ("마이"),
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+  ];
+
+  List<PersistentBottomNavBarItem> _managerBottomNavi = [
+    PersistentBottomNavBarItem(
+      icon: Icon(CupertinoIcons.cart),
+      title: ("사장1"),
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(CupertinoIcons.home),
+      title: ("홈"),
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(CupertinoIcons.person),
+      title: ("마이"),
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
@@ -54,29 +108,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> _buildScreens() {
-    return [CartScreen(), MenuScreen(), MyPageScreen()];
+    var userProvider = context.watch<UserProvider>();
+    var userType = userProvider.userType;
+
+    if (UserType.MANAGER == userType) {
+      return [ManageTempScreen(), ManageHomeScreen(), ManageMyPageScreen()];
+    } else {
+      return [CartScreen(), MenuScreen(), MyPageScreen()];
+    }
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
-    return [
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.cart),
-        title: ("장바구니"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
-        title: ("홈"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
-        title: ("마이"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-    ];
+    var userProvider = context.watch<UserProvider>();
+    var userType = userProvider.userType;
+
+    if (UserType.MANAGER == userType) {
+      return _customerBottomNavi;
+    } else {
+      return _managerBottomNavi;
+    }
   }
 }

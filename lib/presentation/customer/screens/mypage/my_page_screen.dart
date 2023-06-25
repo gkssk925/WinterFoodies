@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
@@ -130,11 +131,10 @@ class _MyPageScreenState extends State<MyPageScreen> {
               ),
               InkWell(
                 onTap: () {
-                  PersistentNavBarNavigator.pushNewScreen(
-                    context,
-                    screen: LoginScreen(),
-                    withNavBar: true,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute(
+                      builder: (context) => LoginScreen(),
+                    ),
                   );
                 },
                 child: Container(

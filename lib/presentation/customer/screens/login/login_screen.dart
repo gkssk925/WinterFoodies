@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/enums.dart';
 import 'package:winter_foodies/core/utils/string_util.dart';
+import 'package:winter_foodies/presentation/blocs/login_bloc.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/provider/user_provider.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/widgets/user_type_select_button.dart';
 import 'package:winter_foodies/presentation/customer/screens/login/widgets/submit_button.dart';
@@ -128,6 +130,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() {
                             if (_formKey.currentState!.validate()) {
                               //로그인 수행
+                              BlocProvider.of<LoginBloc>(context)
+                                 .add(LoginRequested());
+                              
+                                Navigator.of(context).pushNamed('/home');
                             }
                           });
                         },
