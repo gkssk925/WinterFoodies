@@ -18,7 +18,8 @@ class GetMyPageInfoApi {
           'Content-Type': 'application/json'
         },
       );
-      var result = Map.from(jsonDecode(response.body));
+
+      var result = Map.from(jsonDecode(utf8.decode(response.bodyBytes)));
 
       return result;
     } catch (e) {

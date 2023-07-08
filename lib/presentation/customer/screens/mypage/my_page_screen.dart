@@ -6,6 +6,8 @@ import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
 import 'package:winter_foodies/presentation/blocs/login_bloc.dart';
+import 'package:winter_foodies/presentation/customer/screens/mypage/widgets/announce_bottom_sheet.dart';
+import 'package:winter_foodies/presentation/customer/screens/mypage/widgets/config_bottom_sheet.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/widgets/my_page_menu_button.dart';
 import 'package:winter_foodies/presentation/customer/screens/login/login_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/mypage/widgets/my_info_screen.dart';
@@ -87,11 +89,29 @@ class _MyPageScreenState extends State<MyPageScreen> {
                   }),
                 ),
               ),
-              MyPageMenuButton(buttonText: '환경설정', onTap: () {}),
+              MyPageMenuButton(
+                  buttonText: '환경설정',
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) {
+                          return ConfigBottomSheet(title: '환경설정');
+                        });
+                  }),
               SizedBox(
                 height: 10,
               ),
-              MyPageMenuButton(buttonText: '공지사항', onTap: () {}),
+              MyPageMenuButton(
+                  buttonText: '공지사항',
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) {
+                          return AnnounceBottomSheet(title: '공지사항');
+                        });
+                  }),
               SizedBox(
                 height: 10,
               ),
@@ -102,9 +122,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
               MyPageMenuButton(
                   buttonText: '로그아웃',
                   onTap: () {
-                     BlocProvider.of<LoginBloc>(context)
+                    BlocProvider.of<LoginBloc>(context)
                         .add(const LogoutRequested());
-
 
                     Navigator.of(context, rootNavigator: true).push(
                       MaterialPageRoute(

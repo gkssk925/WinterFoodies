@@ -4,7 +4,7 @@ import 'package:winter_foodies/config/my_colors.dart';
 class MyPageMenuButton extends StatelessWidget {
   final String buttonText;
   final Function onTap;
-  const MyPageMenuButton(
+const MyPageMenuButton(
       {super.key, required this.buttonText, required this.onTap});
 
   @override
