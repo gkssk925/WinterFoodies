@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/widgets/round_button.dart';
+import 'package:winter_foodies/presentation/customer/screens/mypage/provider/mypage_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyInfoScreen extends StatefulWidget {
   const MyInfoScreen({super.key});
@@ -11,12 +13,24 @@ class MyInfoScreen extends StatefulWidget {
 }
 
 class _MyInfoScreenState extends State<MyInfoScreen> {
+  late MyPageProvider _myPageProvider;
   final TextEditingController _changePwdController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await _myPageProvider.getMyPageInfo();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    _myPageProvider = context.watch<MyPageProvider>();
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: MyColors.primary,
@@ -43,14 +57,17 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text('아이디'), Text('gkssk925')],
+                children: [Text('아이디'), Text(_myPageProvider.myPageInfo.email)],
               ),
               Divider(
                 thickness: 1,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text('닉네임'), Text('나는야 먹보')],
+                children: [
+                  Text('닉네임'),
+                  Text(_myPageProvider.myPageInfo.username)
+                ],
               ),
               Divider(
                 thickness: 1,

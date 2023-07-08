@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:winter_foodies/core/utils/string_util.dart';
-import 'package:winter_foodies/domain/usecases/login/login_use_case.dart';
+import 'package:winter_foodies/domain/usecases/customer/login/login_use_case.dart';
 import 'package:winter_foodies/data/models/param/get_token_param.dart';
 import 'package:winter_foodies/data/models/param/login_param.dart';
 

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
+import 'package:winter_foodies/presentation/blocs/login_bloc.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/widgets/my_page_menu_button.dart';
 import 'package:winter_foodies/presentation/customer/screens/login/login_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/mypage/widgets/my_info_screen.dart';
@@ -100,6 +102,10 @@ class _MyPageScreenState extends State<MyPageScreen> {
               MyPageMenuButton(
                   buttonText: '로그아웃',
                   onTap: () {
+                     BlocProvider.of<LoginBloc>(context)
+                        .add(const LogoutRequested());
+
+
                     Navigator.of(context, rootNavigator: true).push(
                       MaterialPageRoute(
                         builder: (context) => LoginScreen(),

@@ -39,4 +39,6 @@ class Strings {
   static const List<String> myPageMenu = ['내 정보', '찜', '리뷰관리', '주문내역'];
 
   static const String PREF_TOKEN = 'TOKEN';
+
+    static const ERROR_MSG = 'ERROR_MSG';
 }

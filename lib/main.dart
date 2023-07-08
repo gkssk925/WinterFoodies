@@ -10,6 +10,7 @@ import 'package:winter_foodies/presentation/customer/screens/home/home_screen.da
 import 'package:winter_foodies/presentation/customer/screens/login/login_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/map/map_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/menu/menu_screen.dart';
+import 'package:winter_foodies/presentation/customer/screens/mypage/provider/mypage_provider.dart';
 import 'package:winter_foodies/presentation/customer/screens/signup/sign_up_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/store_detail/store_detail_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/store_list/store_list_screen.dart';
@@ -24,6 +25,9 @@ void main() async {
     providers: [
       ChangeNotifierProvider<UserProvider>(
         create: (_) => UserProvider(),
+      ),
+      ChangeNotifierProvider<MyPageProvider>(
+        create: (_) => MyPageProvider(),
       ),
     ],
     child: const MyApp(),
