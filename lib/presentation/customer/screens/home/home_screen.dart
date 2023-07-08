@@ -123,9 +123,9 @@ class _HomeScreenState extends State<HomeScreen> {
     var userType = userProvider.userType;
 
     if (UserType.MANAGER == userType) {
-      return _customerBottomNavi;
-    } else {
       return _managerBottomNavi;
+    } else {
+      return _customerBottomNavi;
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
+import 'package:winter_foodies/presentation/customer/screens/common/widgets/my_page_menu_button.dart';
 import 'package:winter_foodies/presentation/customer/screens/login/login_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/mypage/widgets/my_info_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/zzim/zzim_screen.dart';
@@ -84,72 +85,27 @@ class _MyPageScreenState extends State<MyPageScreen> {
                   }),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    color: MyColors.white),
-                child: Row(
-                  children: [
-                    Expanded(child: Text('환경설정')),
-                    Icon(Icons.arrow_forward_ios)
-                  ],
-                ),
-              ),
+              MyPageMenuButton(buttonText: '환경설정', onTap: () {}),
               SizedBox(
                 height: 10,
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    color: MyColors.white),
-                child: Row(
-                  children: [
-                    Expanded(child: Text('공지사항')),
-                    Icon(Icons.arrow_forward_ios)
-                  ],
-                ),
-              ),
+              MyPageMenuButton(buttonText: '공지사항', onTap: () {}),
               SizedBox(
                 height: 10,
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    color: MyColors.white),
-                child: Row(
-                  children: [
-                    Expanded(child: Text('현재버전 1.0.1')),
-                    Icon(Icons.arrow_forward_ios)
-                  ],
-                ),
-              ),
+              MyPageMenuButton(buttonText: '현재 버전 1.0.1', onTap: () {}),
               SizedBox(
                 height: 10,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context, rootNavigator: true).push(
-                    MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      color: MyColors.white),
-                  child: Row(
-                    children: [
-                      Expanded(child: Text('로그아웃')),
-                      Icon(Icons.arrow_forward_ios)
-                    ],
-                  ),
-                ),
-              ),
+              MyPageMenuButton(
+                  buttonText: '로그아웃',
+                  onTap: () {
+                    Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
+                  }),
             ],
           )),
     );

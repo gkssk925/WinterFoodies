@@ -4,6 +4,8 @@ import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/enums.dart';
 import 'package:winter_foodies/core/utils/string_util.dart';
+import 'package:winter_foodies/data/models/param/get_token_param.dart';
+import 'package:winter_foodies/data/models/param/login_param.dart';
 import 'package:winter_foodies/presentation/blocs/login_bloc.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/provider/user_provider.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/widgets/user_type_select_button.dart';
@@ -129,11 +131,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         onTapCallback: () {
                           setState(() {
                             if (_formKey.currentState!.validate()) {
+                              var getTokenParam = GetTokenParam(
+                                email: _idController.text,
+                                username: "헨리",
+                                password: _pwdController.text,
+                           );
+
                               //로그인 수행
                               BlocProvider.of<LoginBloc>(context)
-                                 .add(LoginRequested());
-                              
-                                Navigator.of(context).pushNamed('/home');
+                                  .add(LoginRequested(getTokenParam: getTokenParam));
+
+                              Navigator.of(context).pushNamed('/home');
                             }
                           });
                         },

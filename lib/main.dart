@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+import 'package:winter_foodies/core/utils/pref_util.dart';
+import 'package:winter_foodies/di/locator.dart';
 import 'package:winter_foodies/presentation/blocs/login_bloc.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/provider/user_provider.dart';
 import 'package:winter_foodies/presentation/customer/screens/home/home_screen.dart';
@@ -12,7 +14,12 @@ import 'package:winter_foodies/presentation/customer/screens/signup/sign_up_scre
 import 'package:winter_foodies/presentation/customer/screens/store_detail/store_detail_screen.dart';
 import 'package:winter_foodies/presentation/customer/screens/store_list/store_list_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding
+      .ensureInitialized(); // runApp 호출전 초기화 작업이 필요한 경우 초기화 보장하기 위해 사용. 안정성과 성능을 위해 권장된다.
+  initServiceLocator(); // ServiceLocator init
+  await PrefUtil.init(); // SharedPreference Util init
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<UserProvider>(

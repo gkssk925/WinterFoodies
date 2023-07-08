@@ -5,10 +5,9 @@ abstract class LoginEvent {
 }
 
 class LoginRequested extends LoginEvent {
- // final LoginParam authCodeParam;
+  final GetTokenParam getTokenParam;
 
-  //const LoginRequested({required this.authCodeParam});
-   const LoginRequested();
+  const LoginRequested({required this.getTokenParam});
 }
 
 class AutoLoginRequested extends LoginEvent {

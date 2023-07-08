@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:winter_foodies/core/utils/string_util.dart';
 import 'package:winter_foodies/domain/usecases/login/login_use_case.dart';
+import 'package:winter_foodies/data/models/param/get_token_param.dart';
+import 'package:winter_foodies/data/models/param/login_param.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -7,8 +10,8 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(const LoginInProgress()) {
     on<LoginRequested>((event, emit) async {
-      bool success = await LoginUseCase().call();
-      if (success) {
+      String token = await LoginUseCase().call(event.getTokenParam);
+      if (StringUtil.isValidString(token)) {
         emit(const LoginSuccess());
       } else {
         emit(const LoginFail());
