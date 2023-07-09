@@ -53,7 +53,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                           if (index == 0) {
                             PersistentNavBarNavigator.pushNewScreen(
                               context,
-                              screen: MyInfoScreen(),
+                              screen: const MyInfoScreen(),
                               withNavBar: true,
                               pageTransitionAnimation:
                                   PageTransitionAnimation.cupertino,
@@ -61,7 +61,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                           } else if (index == 1) {
                             PersistentNavBarNavigator.pushNewScreen(
                               context,
-                              screen: ZzimScreen(),
+                              screen: const ZzimScreen(),
                               withNavBar: true,
                               pageTransitionAnimation:
                                   PageTransitionAnimation.cupertino,

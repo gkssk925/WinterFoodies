@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
 import 'package:winter_foodies/constants/strings.dart';
+import 'package:winter_foodies/presentation/customer/screens/mypage/provider/mypage_provider.dart';
+import 'package:provider/provider.dart';
 
 class ZzimScreen extends StatefulWidget {
   const ZzimScreen({super.key});
@@ -11,8 +13,21 @@ class ZzimScreen extends StatefulWidget {
 }
 
 class _ZzimScreenState extends State<ZzimScreen> {
+  late MyPageProvider _myPageProvider;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await _myPageProvider.getMyPageZzimList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    _myPageProvider = context.watch<MyPageProvider>();
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: MyColors.primary,
