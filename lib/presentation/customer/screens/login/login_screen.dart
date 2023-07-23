@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:winter_foodies/config/my_colors.dart';
 import 'package:winter_foodies/constants/build_context_extensions.dart';
-import 'package:winter_foodies/constants/enums.dart';
-import 'package:winter_foodies/core/utils/string_util.dart';
 import 'package:winter_foodies/data/models/param/get_token_param.dart';
-import 'package:winter_foodies/data/models/param/login_param.dart';
 import 'package:winter_foodies/presentation/blocs/login_bloc.dart';
-import 'package:winter_foodies/presentation/customer/screens/common/provider/user_provider.dart';
 import 'package:winter_foodies/presentation/customer/screens/common/widgets/user_type_select_button.dart';
 import 'package:winter_foodies/presentation/customer/screens/login/widgets/submit_button.dart';
 
@@ -59,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                     padding: const EdgeInsets.all(20),
                     decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
                         color: MyColors.primary),
                     child: Form(
                       key: _formKey,
@@ -89,12 +85,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SizedBox(
                             width: 10,
                           ),
+
                           TextFormField(
                             controller: _idController,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: '아이디 입력',
                               fillColor: MyColors.white,
                               filled: true,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                             ),
                             validator: (value) {
                               if (value != null && value.isEmpty) {
@@ -116,10 +119,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           TextFormField(
                             controller: _pwdController,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: '비밀번호 입력',
                               fillColor: MyColors.white,
                               filled: true,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                             ),
                             validator: (value) {
                               if (value != null && value.isEmpty) {

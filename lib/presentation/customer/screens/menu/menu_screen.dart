@@ -79,14 +79,17 @@ class _MenuScreenState extends State<MenuScreen> {
                         child: Row(
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.search),
+                              icon: const Icon(
+                                Icons.search,
+                                size: 30,
+                              ),
                               onPressed: () {
                                 controller.openView();
                               },
                             ),
                             Text(
                               _searchController.text,
-                              style: context.titleMedium(),
+                              style: context.titleLarge(),
                             )
                           ],
                         ),
@@ -107,9 +110,15 @@ class _MenuScreenState extends State<MenuScreen> {
                         );
                       });
                     }),
+                SizedBox(
+                  height: 10,
+                ),
                 Flexible(
                   child: GridView.count(
                     crossAxisCount: 3, // 열의 개수
+                    shrinkWrap: false,
+                    mainAxisSpacing: 12.0,
+                    childAspectRatio: 1.4,
                     children: List.generate(Strings.cateList.length, (index) {
                       return Center(
                         child: InkWell(
@@ -123,13 +132,15 @@ class _MenuScreenState extends State<MenuScreen> {
                             );
                           },
                           child: Container(
-                            width: 80,
-                            height: 80,
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
-                            child: Center(child: Text(Strings.cateList[index])),
+                            child: Center(
+                                child: Text(
+                              Strings.cateList[index],
+                              style: context.titleLarge(),
+                            )),
                           ),
                         ),
                       );
@@ -143,10 +154,10 @@ class _MenuScreenState extends State<MenuScreen> {
                       style: context.titleLarge(),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     SizedBox(
-                      height: 150,
+                      height: 210,
                       child: ListView.builder(
                           itemCount:
                               (currentIndex + 4) <= Strings.cateList.length
@@ -181,6 +192,7 @@ class _MenuScreenState extends State<MenuScreen> {
             Flexible(
               flex: 2,
               child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                     color: MyColors.white),

@@ -62,7 +62,18 @@ class _StoreListScreenState extends State<StoreListScreen>
                               PageTransitionAnimation.cupertino,
                         );
                       },
-                      child: Icon(Icons.map)),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.map,
+                            size: 30,
+                          ),
+                          Text('지도', style: context.titleLarge())
+                        ],
+                      )),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Expanded(
                     child: SearchAnchor(
                         searchController: _searchController,
@@ -78,7 +89,10 @@ class _StoreListScreenState extends State<StoreListScreen>
                             child: Row(
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.search),
+                                  icon: const Icon(
+                                    Icons.search,
+                                    size: 30,
+                                  ),
                                   onPressed: () {
                                     controller.openView();
                                   },
@@ -122,7 +136,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                         FilterChip(
                             label: Text(
                               Strings.cateList[index],
-                              style: context.titleMedium(),
+                              style: context.headlineSmall(),
                             ),
                             selected: _selectedMenu == Strings.cateList[index],
                             selectedColor: MyColors.darkOrange,
@@ -163,6 +177,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                           });
                         },
                         child: Container(
+                          padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(6)),
@@ -171,8 +186,8 @@ class _StoreListScreenState extends State<StoreListScreen>
                                   : MyColors.white),
                           child: Center(
                             child: Text(
-                              '가까운 순',
-                              style: context.titleMedium(),
+                              '거리 순',
+                              style: context.titleLarge(),
                             ),
                           ),
                         ),
@@ -184,6 +199,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                           });
                         },
                         child: Container(
+                          padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(6)),
@@ -193,7 +209,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                           child: Center(
                             child: Text(
                               '인기 순',
-                              style: context.titleMedium(),
+                              style: context.titleLarge(),
                             ),
                           ),
                         ),
@@ -205,6 +221,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                           });
                         },
                         child: Container(
+                          padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6)),
@@ -214,7 +231,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                           child: Center(
                             child: Text(
                               '리뷰 순',
-                              style: context.titleMedium(),
+                              style: context.titleLarge(),
                             ),
                           ),
                         ),
@@ -244,6 +261,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                           );
                         },
                         child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6)),
@@ -251,7 +269,7 @@ class _StoreListScreenState extends State<StoreListScreen>
                           child: Center(
                             child: Text(
                               Strings.storeList[index],
-                              style: context.titleMedium(),
+                              style: context.titleLarge(),
                             ),
                           ),
                         ),

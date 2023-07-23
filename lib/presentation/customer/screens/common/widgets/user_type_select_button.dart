@@ -30,7 +30,7 @@ class _UserTypeSelectButtonState extends State<UserTypeSelectButton> {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(
-                  Radius.circular(10.0),
+                  Radius.circular(6),
                 ),
                 color: UserType.CUSTOMER == _userProvider.userType
                     ? MyColors.darkOrange
@@ -49,7 +49,7 @@ class _UserTypeSelectButtonState extends State<UserTypeSelectButton> {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(
-                  Radius.circular(10.0),
+                  Radius.circular(6),
                 ),
                 color: UserType.MANAGER == _userProvider.userType
                     ? MyColors.darkOrange

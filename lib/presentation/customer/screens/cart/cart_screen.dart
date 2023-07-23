@@ -33,7 +33,7 @@ class _CartScreenState extends State<CartScreen> {
               children: [
                 Text(
                   '신천붕어빵',
-                  style: context.titleLarge(),
+                  style: context.headlineSmall(),
                 ),
                 SizedBox(
                   height: 20,
@@ -50,6 +50,7 @@ class _CartScreenState extends State<CartScreen> {
                             // Navigator.of(context).pushNamed('/storeDetail');
                           },
                           child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 10),
                             decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(6)),
@@ -57,7 +58,7 @@ class _CartScreenState extends State<CartScreen> {
                             child: Center(
                               child: Text(
                                 Strings.cartList[index],
-                                style: context.titleMedium(),
+                                style: context.titleLarge(),
                               ),
                             ),
                           ),
@@ -67,28 +68,39 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                       color: MyColors.white),
                   child: Center(
                     child: Text(
                       '총 주문금액 6000원',
-                      style: context.titleMedium(),
+                      style: context.titleLarge(),
                     ),
                   ),
                 ),
                 Spacer(),
-                RoundButton(
-                    buttonText: '6000원 주문하기',
-                    onTap: () {
-                      PersistentNavBarNavigator.pushNewScreen(
-                        context,
-                        screen: OrderScreen(),
-                        withNavBar: true,
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                      );
-                    })
+                InkWell(
+                  onTap: () {
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: OrderScreen(),
+                      withNavBar: true,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                        color: MyColors.white),
+                    child: Text(
+                      '6000원 주문하기',
+                      style: context.headlineMedium(),
+                    ),
+                  ),
+                )
               ],
             )));
   }

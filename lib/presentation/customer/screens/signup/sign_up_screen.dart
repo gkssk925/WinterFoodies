@@ -69,10 +69,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Expanded(
                       child: TextFormField(
                         controller: _idController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: '아이디 입력',
                           fillColor: MyColors.white,
                           filled: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 10),
                         ),
                         validator: (value) {
                           if (value != null && value.isEmpty) {
@@ -109,10 +115,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Expanded(
                                 child: TextFormField(
                                   controller: _idController,
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
                                     hintText: '닉네임 입력',
                                     fillColor: MyColors.white,
                                     filled: true,
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
                                   ),
                                   validator: (value) {
                                     if (value != null && value.isEmpty) {
@@ -147,10 +159,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 TextFormField(
                   controller: _pwdController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: '비밀번호 입력',
                     fillColor: MyColors.white,
                     filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                   ),
                   validator: (value) {
                     if (value != null && value.isEmpty) {
@@ -174,10 +191,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 TextFormField(
                   controller: _pwdController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: '비밀번호 확인',
                     fillColor: MyColors.white,
                     filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                   ),
                   validator: (value) {
                     if (value != null && value.isEmpty) {

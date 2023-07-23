@@ -22,7 +22,7 @@ class _SubmitButtonState extends State<SubmitButton> {
         padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
+              Radius.circular(6),
             ),
             color: MyColors.white),
         child: Center(

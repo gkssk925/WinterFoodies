@@ -24,16 +24,21 @@ class _StoreDetailMenuState extends State<StoreDetailMenu> {
               // Navigator.of(context).pushNamed('/storeDetail');
             },
             child: Container(
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                  color: MyColors.white),
-              child: Center(
-                child: Text(
-                  Strings.menuList[index],
-                  style: context.titleMedium(),
-                ),
-              ),
-            ),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: MyColors.white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      Strings.menuList[index],
+                      style: context.titleMedium(),
+                    ),
+                    Icon(Icons.shopping_cart)
+                  ],
+                )),
           ),
         );
       },

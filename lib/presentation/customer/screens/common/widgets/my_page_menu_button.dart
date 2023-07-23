@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:winter_foodies/config/my_colors.dart';
+import 'package:winter_foodies/constants/build_context_extensions.dart';
 
 class MyPageMenuButton extends StatelessWidget {
   final String buttonText;
   final Function onTap;
-const MyPageMenuButton(
+  const MyPageMenuButton(
       {super.key, required this.buttonText, required this.onTap});
 
   @override
@@ -20,7 +21,11 @@ const MyPageMenuButton(
             color: MyColors.white),
         child: Row(
           children: [
-            Expanded(child: Text(buttonText)),
+            Expanded(
+                child: Text(
+              buttonText,
+              style: context.titleLarge(),
+            )),
             Icon(Icons.arrow_forward_ios)
           ],
         ),

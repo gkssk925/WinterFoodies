@@ -40,12 +40,17 @@ class _MyPageScreenState extends State<MyPageScreen> {
             children: [
               Text(
                 '류현수님 안녕하세요!',
-                style: context.titleMedium(),
+                style: context.headlineSmall(),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Flexible(
                 child: GridView.count(
                   crossAxisCount: 2, // 열의 개수,
-                  //childAspectRatio: 2 / 2,
+                  mainAxisSpacing: 12.0,
+                  crossAxisSpacing: 3.0,
+                  childAspectRatio: 1.5,
                   children: List.generate(Strings.myPageMenu.length, (index) {
                     return Center(
                       child: InkWell(
@@ -76,13 +81,15 @@ class _MyPageScreenState extends State<MyPageScreen> {
                           // );
                         },
                         child: Container(
-                          width: 80,
-                          height: 80,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.white,
                           ),
-                          child: Center(child: Text(Strings.myPageMenu[index])),
+                          child: Center(
+                              child: Text(
+                            Strings.myPageMenu[index],
+                            style: context.titleLarge(),
+                          )),
                         ),
                       ),
                     );

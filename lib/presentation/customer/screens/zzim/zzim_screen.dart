@@ -50,7 +50,7 @@ class _ZzimScreenState extends State<ZzimScreen> {
             children: [
               Text(
                 '찜',
-                style: context.titleLarge(),
+                style: context.headlineSmall(),
               ),
               Expanded(
                 child: ListView.builder(
@@ -64,6 +64,7 @@ class _ZzimScreenState extends State<ZzimScreen> {
                           //todo 찜목록에 있는 리스트 누르면 가게 상세 정보로 이동해야하나? 그러면 하단탭도 이동해야겠네..
                         },
                         child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
                           decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6)),
@@ -71,7 +72,7 @@ class _ZzimScreenState extends State<ZzimScreen> {
                           child: Center(
                             child: Text(
                               Strings.storeList[index],
-                              style: context.titleMedium(),
+                              style: context.titleLarge(),
                             ),
                           ),
                         ),

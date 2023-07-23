@@ -53,11 +53,20 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
             children: [
               Text(
                 '내 정보',
-                style: context.titleLarge(),
+                style: context.headlineSmall(),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text('아이디'), Text(_myPageProvider.myPageInfo.email)],
+                children: [
+                  Text(
+                    '아이디',
+                    style: context.titleLarge(),
+                  ),
+                  Text(_myPageProvider.myPageInfo.email)
+                ],
               ),
               Divider(
                 thickness: 1,
@@ -65,53 +74,72 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('닉네임'),
+                  Text(
+                    '닉네임',
+                    style: context.titleLarge(),
+                  ),
                   Text(_myPageProvider.myPageInfo.username)
                 ],
               ),
               Divider(
                 thickness: 1,
               ),
+              Text(
+                '비밀번호 변경',
+                style: context.titleLarge(),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               Form(
-                key: _formKey,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('비밀번호 변경'),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: context.width / 2,
-                          child: TextFormField(
-                            controller: _changePwdController,
-                            decoration: const InputDecoration(
-                              hintText: '변경할 비밀번호',
-                              fillColor: MyColors.white,
-                              filled: true,
+                  key: _formKey,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _changePwdController,
+                          decoration: InputDecoration(
+                            hintText: '변경할 비밀번호',
+                            fillColor: MyColors.white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            validator: (value) {
-                              if (value != null && value.isEmpty) {
-                                return '변경할 비밀번호를 입력해주세요';
-                              }
-                              return null;
-                            },
+                          ),
+                          validator: (value) {
+                            if (value != null && value.isEmpty) {
+                              return '변경할 비밀번호를 입력해주세요';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            if (_formKey.currentState!.validate()) {
+                              //비번 변경 진행
+                            }
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                              color: MyColors.white),
+                          child: Text(
+                            '변경',
+                            style: context.titleLarge(),
                           ),
                         ),
-                        InkWell(
-                            onTap: () {
-                              setState(() {
-                                if (_formKey.currentState!.validate()) {
-                                  //비번 변경 진행
-                                }
-                              });
-                            },
-                            child: RoundButton(buttonText: '변경', onTap: () {}))
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                      )
+                    ],
+                  ))
             ],
           ),
         ));
