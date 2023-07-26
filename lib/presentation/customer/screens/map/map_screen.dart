@@ -52,7 +52,10 @@ class _MapScreenState extends State<MapScreen> {
         body: Container(
           child: Column(
             children: [
-              Text('나와 가까운 매장을 불러옵니다'),
+              Text(
+                '나와 가까운 매장을 불러옵니다',
+                style: context.headlineSmall(),
+              ),
               Expanded(
                   child: _userPosition == null
                       ? const Center(

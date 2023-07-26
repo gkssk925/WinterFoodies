@@ -50,24 +50,37 @@ class _StoreDetailScreenState extends State<StoreDetailScreen>
           RatingBar.builder(
               initialRating: 3.0,
               allowHalfRating: true,
+              ignoreGestures: true,
               itemBuilder: (context, _) => Icon(
                     Icons.star,
-                    color: Colors.amber,
+                    color: MyColors.black,
                   ),
               onRatingUpdate: (rating) {}),
+          SizedBox(
+            height: 10,
+          ),
           DefaultTabController(
             length: 3,
             child: TabBar(
               controller: _tabController,
-              tabs: const [
+              tabs: [
                 Tab(
-                  text: '메뉴',
+                  child: Text(
+                    '메뉴',
+                    style: context.titleLarge(),
+                  ),
                 ),
                 Tab(
-                  text: '가게정보',
+                  child: Text(
+                    '가게정보',
+                    style: context.titleLarge(),
+                  ),
                 ),
                 Tab(
-                  text: '리뷰',
+                  child: Text(
+                    '리뷰',
+                    style: context.titleLarge(),
+                  ),
                 )
               ],
               indicator: BoxDecoration(
@@ -84,7 +97,6 @@ class _StoreDetailScreenState extends State<StoreDetailScreen>
               child: TabBarView(controller: _tabController, children: [
             StoreDetailMenu(),
             StoreDetailInfo(),
-            
             StoreDetailReview(),
           ]))
         ]),

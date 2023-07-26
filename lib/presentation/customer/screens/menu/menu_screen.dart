@@ -63,8 +63,9 @@ class _MenuScreenState extends State<MenuScreen> {
           backgroundColor: MyColors.primary,
         ),
         body: Container(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SearchAnchor(
                     searchController: _searchController,
@@ -114,64 +115,65 @@ class _MenuScreenState extends State<MenuScreen> {
                   height: 10,
                 ),
                 Flexible(
+                  flex: 4,
                   child: GridView.count(
-                    crossAxisCount: 3, // 열의 개수
-                    shrinkWrap: false,
-                    mainAxisSpacing: 12.0,
-                    childAspectRatio: 1.4,
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 1.3,
                     children: List.generate(Strings.cateList.length, (index) {
-                      return Center(
-                        child: InkWell(
-                          onTap: () {
-                            PersistentNavBarNavigator.pushNewScreen(
-                              context,
-                              screen: StoreListScreen(),
-                              withNavBar: true,
-                              pageTransitionAnimation:
-                                  PageTransitionAnimation.cupertino,
-                            );
-                          },
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            child: Center(
-                                child: Text(
-                              Strings.cateList[index],
-                              style: context.titleLarge(),
-                            )),
+                      return InkWell(
+                        onTap: () {
+                          PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: StoreListScreen(),
+                            withNavBar: true,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          );
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
                           ),
+                          child: Center(
+                              child: Text(
+                            Strings.cateList[index],
+                            style: context.titleLarge(),
+                          )),
                         ),
                       );
                     }),
                   ),
                 ),
-                Column(
-                  children: [
-                    Text(
-                      '인기 간식 랭킹',
-                      style: context.titleLarge(),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 210,
-                      child: ListView.builder(
-                          itemCount:
-                              (currentIndex + 4) <= Strings.cateList.length
-                                  ? 4
-                                  : Strings.cateList.length - currentIndex,
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: ((context, index) {
-                            final keywordIndex = (currentIndex + index) %
-                                Strings.cateList.length;
-                            return _popularKeyword(
-                                Strings.cateList[keywordIndex], keywordIndex);
-                          })),
-                    )
-                  ],
+                Flexible(
+                  flex: 3,
+                  child: Column(
+                    children: [
+                      Text(
+                        '인기 간식 랭킹',
+                        style: context.titleLarge(),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Expanded(
+                        //height: 210,
+                        child: ListView.builder(
+                            itemCount:
+                                (currentIndex + 4) <= Strings.cateList.length
+                                    ? 4
+                                    : Strings.cateList.length - currentIndex,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: ((context, index) {
+                              final keywordIndex = (currentIndex + index) %
+                                  Strings.cateList.length;
+                              return _popularKeyword(
+                                  Strings.cateList[keywordIndex], keywordIndex);
+                            })),
+                      )
+                    ],
+                  ),
                 )
               ],
             )));
@@ -192,7 +194,7 @@ class _MenuScreenState extends State<MenuScreen> {
             Flexible(
               flex: 2,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 5),
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                     color: MyColors.white),

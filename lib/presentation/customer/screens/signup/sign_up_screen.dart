@@ -54,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   '회원가입',
                   style: context.titleLarge(),
                 ),
-                const UserTypeSelectButton(),
+                //const UserTypeSelectButton(),
                 //아이디
                 Align(
                   alignment: Alignment.centerLeft,

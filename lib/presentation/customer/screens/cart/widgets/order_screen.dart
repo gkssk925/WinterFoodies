@@ -29,7 +29,7 @@ class _OrderScreenState extends State<OrderScreen> {
               children: [
                 Text(
                   '주문내역',
-                  style: context.titleLarge(),
+                  style: context.displaySmall(),
                 ),
                 Container(
                     padding: EdgeInsets.all(10),
@@ -41,7 +41,10 @@ class _OrderScreenState extends State<OrderScreen> {
                       children: [
                         Row(
                           children: [
-                            Text('어묵'),
+                            Text(
+                              '어묵',
+                              style: context.titleLarge(),
+                            ),
                             SizedBox(
                               width: 20,
                             ),
@@ -50,6 +53,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 '4개 2000원',
                                 maxLines: 5,
                                 overflow: TextOverflow.ellipsis,
+                                style: context.titleLarge(),
                               ),
                             )
                           ],
@@ -59,16 +63,15 @@ class _OrderScreenState extends State<OrderScreen> {
                         ),
                         Row(
                           children: [
-                            Text('붕어빵'),
+                            Text('붕어빵', style: context.titleLarge()),
                             SizedBox(
                               width: 20,
                             ),
                             Expanded(
-                              child: Text(
-                                '4개 2000원',
-                                maxLines: 5,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              child: Text('4개 2000원',
+                                  maxLines: 5,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: context.titleLarge()),
                             )
                           ],
                         ),
@@ -77,16 +80,15 @@ class _OrderScreenState extends State<OrderScreen> {
                         ),
                         Row(
                           children: [
-                            Text('튀김'),
+                            Text('튀김', style: context.titleLarge()),
                             SizedBox(
                               width: 20,
                             ),
                             Expanded(
-                              child: Text(
-                                '2000원',
-                                maxLines: 5,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              child: Text('2000원',
+                                  maxLines: 5,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: context.titleLarge()),
                             )
                           ],
                         ),
@@ -102,11 +104,11 @@ class _OrderScreenState extends State<OrderScreen> {
                       children: [
                         Text(
                           '총 주문금액 6000원',
-                          style: context.titleMedium(),
+                          style: context.displaySmall(),
                         ),
                         Text(
                           '조리 예상 시간은 10~20분 입니다',
-                          style: context.titleMedium(),
+                          style: context.displaySmall(),
                         ),
                       ],
                     ),

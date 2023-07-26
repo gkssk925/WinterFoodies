@@ -16,7 +16,6 @@ class StoreListScreen extends StatefulWidget {
 class _StoreListScreenState extends State<StoreListScreen>
     with TickerProviderStateMixin {
   final SearchController _searchController = SearchController();
-  late TabController _tabController = TabController(length: 3, vsync: this);
 
   String _selectedMenu = '붕어빵';
   int _selectedFilterType = 0;
@@ -28,7 +27,6 @@ class _StoreListScreenState extends State<StoreListScreen>
 
   @override
   void dispose() {
-    _tabController.dispose();
     super.dispose();
   }
 
@@ -46,14 +44,13 @@ class _StoreListScreenState extends State<StoreListScreen>
         backgroundColor: MyColors.primary,
       ),
       body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
           child: Column(
             children: [
               Row(
                 children: [
                   InkWell(
                       onTap: () {
-                        //Navigator.of(context).pushNamed('/map');
                         PersistentNavBarNavigator.pushNewScreen(
                           context,
                           screen: MapScreen(),
@@ -126,7 +123,7 @@ class _StoreListScreenState extends State<StoreListScreen>
 
               //메뉴 리스트
               SizedBox(
-                height: 100,
+                height: 80,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: Strings.cateList.length,
@@ -159,17 +156,14 @@ class _StoreListScreenState extends State<StoreListScreen>
 
               //가까운순, 인기순, 리뷰순
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                    color: MyColors.white,
-                    borderRadius: BorderRadius.circular(6)),
-                child: TabBar(
-                    controller: _tabController,
-                    indicatorColor: Colors.transparent,
-                    labelColor: Colors.transparent,
-                    automaticIndicatorColorAdjustment: false,
-                    dividerColor: Colors.transparent,
-                    tabs: [
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  decoration: BoxDecoration(
+                      color: MyColors.white,
+                      borderRadius: BorderRadius.circular(6)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       InkWell(
                         onTap: () {
                           setState(() {
@@ -184,11 +178,9 @@ class _StoreListScreenState extends State<StoreListScreen>
                               color: _selectedFilterType == 0
                                   ? MyColors.darkOrange
                                   : MyColors.white),
-                          child: Center(
-                            child: Text(
-                              '거리 순',
-                              style: context.titleLarge(),
-                            ),
+                          child: Text(
+                            '거리 순',
+                            style: context.titleLarge(),
                           ),
                         ),
                       ),
@@ -236,8 +228,8 @@ class _StoreListScreenState extends State<StoreListScreen>
                           ),
                         ),
                       ),
-                    ]),
-              ),
+                    ],
+                  )),
 
               const SizedBox(
                 height: 10,

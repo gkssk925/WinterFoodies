@@ -34,7 +34,7 @@ class _StoreDetailMenuState extends State<StoreDetailMenu> {
                   children: [
                     Text(
                       Strings.menuList[index],
-                      style: context.titleMedium(),
+                      style: context.titleLarge(),
                     ),
                     Icon(Icons.shopping_cart)
                   ],
